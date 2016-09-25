@@ -1,6 +1,5 @@
-package com.woowahan.web.item;
+package com.codehumane.web.item;
 
-import com.woowahan.domain.item.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +16,6 @@ import static org.springframework.data.domain.Sort.Direction.DESC;
 /**
  * Created by chogh on 9/24/16.
  */
-@Slf4j
 @RestController
 @RequestMapping(value = "/products")
 public class ItemController {

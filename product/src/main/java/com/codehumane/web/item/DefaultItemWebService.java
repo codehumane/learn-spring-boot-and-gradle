@@ -1,7 +1,7 @@
-package com.woowahan.web.item;
+package com.codehumane.web.item;
 
-import com.woowahan.domain.item.Item;
-import com.woowahan.domain.item.ItemRepository;
+import com.codehumane.domain.item.Item;
+import com.codehumane.domain.item.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

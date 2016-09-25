@@ -1,6 +1,6 @@
-package com.woowahan.web.item;
+package com.codehumane.web.item;
 
-import com.woowahan.domain.item.Item;
+import com.codehumane.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.domain.Pageable;
