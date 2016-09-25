@@ -1,2 +1,3 @@
 rootProject.name = 'boot-gradle-java8'
-
+include 'product'
+include 'common'

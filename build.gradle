@@ -1,14 +1,50 @@
-group 'codehumane'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.5
-
-repositories {
-    mavenCentral()
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+        version '1.0.0'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+allprojects {
+
+    version '1.0.0'
+    apply plugin: 'java'
+    apply plugin: 'spring-boot'
+
+    ext {
+        versions = [
+            jdk     : '1.8',
+            junit   : '4.11',
+            mysql   : '5.1.38',
+            lombok  : '1.16.8',
+            swagger : '2.2.2'
+        ]
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'org.projectlombok:lombok'
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compile 'org.springframework.data:spring-data-jpa:1.10.3.RELEASE'
+        testCompile group: 'junit', name: 'junit', version: versions.junit
+        runtime "mysql:mysql-connector-java:$versions.mysql"
+        runtime 'com.h2database:h2'
+    }
+
+    sourceCompatibility = versions.jdk
+    targetCompatibility = versions.jdk
+}
+
+wrapper {
+    gradleVersion = '3.0'
 }
