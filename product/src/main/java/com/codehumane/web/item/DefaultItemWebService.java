@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,14 +32,12 @@ public class DefaultItemWebService implements ItemWebService {
         return stream.collect(Collectors.toList());
     }
 
-    @Override
-    public void createSample() {
-        create("a");
-        create("b");
-        create("c");
+    @PostConstruct
+    private void createSampleData() {
+        Stream.of("a", "b", "c").forEach(this::createItem);
     }
 
-    private void create(String name) {
+    private void createItem(String name) {
         Item item = new Item();
         item.setName(name);
         itemRepository.save(item);
