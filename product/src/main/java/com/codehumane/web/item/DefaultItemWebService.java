@@ -1,6 +1,5 @@
 package com.codehumane.web.item;
 
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
@@ -15,11 +14,11 @@ import com.codehumane.domain.item.ItemRepository;
 import com.codehumane.web.PageModel;
 
 /**
+ * ItemWebService 기본 구현체 @see {@link ItemWebService} <br/>
  * Created by chogh on 9/25/16.
  */
 @Service
 public class DefaultItemWebService implements ItemWebService {
-
     private ItemRepository itemRepository;
 
     @Autowired
@@ -30,7 +29,7 @@ public class DefaultItemWebService implements ItemWebService {
     @Override
     public PageModel<ItemModel> list(Pageable pageable) {
         Page<Item> page = itemRepository.findAll(pageable);
-        return new PageModel<ItemModel>(page, ItemModel::new);
+        return new PageModel<>(page, ItemModel::new);
     }
 
     @PostConstruct
