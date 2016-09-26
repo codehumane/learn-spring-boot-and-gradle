@@ -1,19 +1,22 @@
 package com.codehumane.web.item;
 
 import com.codehumane.domain.item.Item;
-import lombok.Getter;
-import lombok.Setter;
+import com.codehumane.web.PageModel;
+
 import org.springframework.data.domain.Pageable;
 
 import java.util.Date;
-import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
+ * 상품의 항목(Item)을 웹에서 다루기 위한 서비스<br/>
  * Created by chogh on 9/25/16.
  */
 interface ItemWebService {
 
-    List<ItemModel> list(Pageable pageable);
+    PageModel<ItemModel> list(Pageable pageable);
 
     @Getter
     @Setter

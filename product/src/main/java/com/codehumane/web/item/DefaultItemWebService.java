@@ -1,16 +1,18 @@
 package com.codehumane.web.item;
 
-import com.codehumane.domain.item.Item;
-import com.codehumane.domain.item.ItemRepository;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import com.codehumane.domain.item.Item;
+import com.codehumane.domain.item.ItemRepository;
+import com.codehumane.web.PageModel;
 
 /**
  * Created by chogh on 9/25/16.
@@ -26,10 +28,9 @@ public class DefaultItemWebService implements ItemWebService {
     }
 
     @Override
-    public List<ItemModel> list(Pageable pageable) {
+    public PageModel<ItemModel> list(Pageable pageable) {
         Page<Item> page = itemRepository.findAll(pageable);
-        Stream<ItemModel> stream = page.getContent().stream().map(ItemModel::new);
-        return stream.collect(Collectors.toList());
+        return new PageModel<ItemModel>(page, ItemModel::new);
     }
 
     @PostConstruct
@@ -42,4 +43,5 @@ public class DefaultItemWebService implements ItemWebService {
         item.setName(name);
         itemRepository.save(item);
     }
+
 }

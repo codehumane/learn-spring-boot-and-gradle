@@ -1,7 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '1.4.0.RELEASE'
-        version '1.0.0'
+        version = '1.0.0'
     }
     repositories {
         mavenCentral()
@@ -19,11 +19,12 @@ allprojects {
 
     ext {
         versions = [
-            jdk     : '1.8',
-            junit   : '4.11',
-            mysql   : '5.1.38',
-            lombok  : '1.16.8',
-            swagger : '2.2.2'
+                jdk    : '1.8',
+                junit  : '4.11',
+                mysql  : '5.1.38',
+                lombok : '1.16.8',
+                swagger: '2.2.2',
+                jackson: '2.7.4',
         ]
     }
 
@@ -36,7 +37,8 @@ allprojects {
         compile 'org.springframework.boot:spring-boot-starter-web'
         compile 'org.springframework.boot:spring-boot-starter-data-jpa'
         compile 'org.springframework.data:spring-data-jpa:1.10.3.RELEASE'
-        testCompile group: 'junit', name: 'junit', version: versions.junit
+        compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$versions.jackson"
+        testCompile "junit:junit:$versions.junit"
         runtime "mysql:mysql-connector-java:$versions.mysql"
         runtime 'com.h2database:h2'
     }

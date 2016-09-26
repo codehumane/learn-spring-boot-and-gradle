@@ -1,13 +1,13 @@
 package com.codehumane.web.item;
 
+import com.codehumane.web.PageModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
@@ -27,7 +27,7 @@ public class ItemController {
     }
 
     @GetMapping(value = "/items")
-    public List<ItemWebService.ItemModel> items(
+    public PageModel<ItemWebService.ItemModel> items(
             @PageableDefault(sort = PAGE_SORT_CREATED_AT, direction = DESC) Pageable pageable) {
         return itemWebService.list(pageable);
     }
